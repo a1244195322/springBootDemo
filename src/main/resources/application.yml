@@ -1,5 +1,26 @@
+#配置程序端口
+server:
+  port: 8080
+#访问html省略
 spring:
     mvc:
      view:
       prefix: /
       suffix: .html
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root
+      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT
+
+#mybatis
+mybatis:
+  type-aliases-package: com.changfei.demo.modules.*.entity
+#swagger
+swagger:
+  title: 'APP文档'
+
+#打印SQL
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
