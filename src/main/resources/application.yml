@@ -11,7 +11,10 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: root
-      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT
+      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    messages:
+      encoding: UTF-8
+      basename: i18n/messages
 
 #mybatis
 mybatis:
@@ -20,7 +23,19 @@ mybatis:
 swagger:
   title: 'APP文档'
 
-#打印SQL
 mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: UUID
+      capital-mode: true
+
+
+#swagger日志等级
+logging:
+  level:
+    io.swagger.models.parameters.AbstractSerializableParameter: error
+
+#打印SQL
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

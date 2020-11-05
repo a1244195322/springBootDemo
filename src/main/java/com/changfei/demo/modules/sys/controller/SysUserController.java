@@ -1,11 +1,11 @@
-package ${package.Controller};
+package com.changfei.demo.modules.sys.controller;
 
 
 import com.changfei.demo.common.constant.Constant;
 import com.changfei.demo.common.page.PageData;
 import com.changfei.demo.common.utils.Result;
-import ${package.Entity}.${entity};
-import ${package.Service}.${table.serviceName};
+import com.changfei.demo.modules.sys.entity.SysUser;
+import com.changfei.demo.modules.sys.service.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -19,27 +19,19 @@ import java.util.Map;
 
 /**
 * <p>
-* ${table.comment!} 前端控制器
+*  前端控制器
 * </p>
 *
-* @author ${author}
-* @since ${date}
+* @author changfei
+* @since 2020-11-05
 */
-<#if restControllerStyle>
 @RestController
-<#else>
-@Controller
-</#if>
-@RequestMapping("<#if package.ModuleName?? && package.ModuleName != "">/${package.ModuleName}</#if>/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}<#else>${table.entityPath}</#if>")
+@RequestMapping("/sys/sys-user")
 @Api(tags="")
-<#if superControllerClass??>
-public class ${table.controllerName} extends ${superControllerClass} {
-<#else>
-public class ${table.controllerName} {
-</#if>
+public class SysUserController {
 
     @Autowired
-    private ${table.serviceName} baseService;
+    private ISysUserService baseService;
 
 
     @ApiOperation("获取分页数据")
@@ -50,25 +42,25 @@ public class ${table.controllerName} {
     @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType="String"),
     @ApiImplicitParam(name = Constant.ORDER, value = "排序方式(asc desc)", paramType = "query", dataType="String")
     })
-    public Result< PageData<${entity}>> getPageByMap(@ApiIgnore @RequestParam Map< String, Object> params) {
-    PageData<${entity}> data=baseService.getPageByMap(params);
-        return new Result< PageData<${entity}>>().ok(data);
+    public Result< PageData<SysUser>> getPageByMap(@ApiIgnore @RequestParam Map< String, Object> params) {
+    PageData<SysUser> data=baseService.getPageByMap(params);
+        return new Result< PageData<SysUser>>().ok(data);
     }
 
     @ApiOperation("保存")
     @PostMapping("/save")
-    public Result<${entity}> save(${entity} entity){
+    public Result<SysUser> save(SysUser entity){
         boolean b=baseService.saveOrUpdate(entity);
         if(b){
-            return new Result<${entity}>().ok(entity);
+            return new Result<SysUser>().ok(entity);
         }
-        return new Result<${entity}>().error("保存失败");
+        return new Result<SysUser>().error("保存失败");
     }
 
     @ApiOperation("获取单条数据")
     @PostMapping("/get/{id}")
-    public Result<${entity}> get(@PathVariable String id){
-        ${entity} entity=baseService.getById(id);
-        return new Result<${entity}>().ok(entity);
+    public Result<SysUser> get(@PathVariable String id){
+        SysUser entity=baseService.getById(id);
+        return new Result<SysUser>().ok(entity);
     }
 }

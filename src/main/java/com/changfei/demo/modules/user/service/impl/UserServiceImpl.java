@@ -24,8 +24,13 @@ public class UserServiceImpl extends WrapperImpl<UserMapper, User> implements IU
     @Override
     public QueryWrapper<User> getWrapper(Map<String, Object> params){
         String name= (String) params.get("name");
+        String age= (String) params.get("age");
+        String sex= (String) params.get("sex");
+
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.like(StringUtils.isNotBlank(name),"name",name);
+        wrapper.eq(StringUtils.isNotBlank(age),"age",age);
+        wrapper.eq(StringUtils.isNotBlank(sex),"sex",sex);
         return wrapper;
     }
 }

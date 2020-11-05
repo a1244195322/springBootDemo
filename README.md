@@ -1,2 +1,2 @@
-# lightDemo
-灯光控制
+# springBootDemo
+springBoot框架搭建

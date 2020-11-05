@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.changfei.demo.common.wrapper.Wrapper;
+import com.changfei.demo.common.wrapper.impl.WrapperImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +27,8 @@ public class CodeGenerator {
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("changfei");
         gc.setOpen(false);
-        // gc.setSwagger2(true); 实体属性 Swagger2 注解
+        // 实体属性 Swagger2 注解
+        gc.setSwagger2(true);
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -39,7 +42,7 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("user");
+        pc.setModuleName("sys");
         pc.setParent("com.changfei.demo.modules");
         mpg.setPackageInfo(pc);
 
@@ -48,7 +51,7 @@ public class CodeGenerator {
             @Override
             public void initMap() {
                 Map map=new HashMap<String,String>();
-                map.put("tags","测试");
+                //map.put("tags","");
                 super.setMap(map);
             }
         };
@@ -104,15 +107,17 @@ public class CodeGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         //strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
+        strategy.setSuperServiceClass(Wrapper.class);
+        strategy.setSuperServiceImplClass(WrapperImpl.class);
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         // 公共父类
         //strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
         // 写于父类中的公共字段
         strategy.setSuperEntityColumns("id");
-        strategy.setInclude("user");
+        strategy.setInclude("sys_user");
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
+        strategy.setTablePrefix("");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
