@@ -9,7 +9,7 @@ package com.changfei.demo.common.exception;
  * <b>审查：</b>时间： 审查人： 审查情况：<br>
  * <b>抽查：</b>时间： 抽查人： 抽查情况：
  *
- * @author Administrator
+ * @author changfei
  * @version 1.0
  */
 public interface ErrorCode {
